@@ -31,12 +31,11 @@ Node * deleteNode(int data, Node * head){
         free(temp);
         return head;
     }
-
     Node* current = head;
     while(current->next && current->next->data != data){
         current = current->next ;
     }
-
+    
     if (current->next) {
         Node * temp = current->next;
         current->next = temp->next;
