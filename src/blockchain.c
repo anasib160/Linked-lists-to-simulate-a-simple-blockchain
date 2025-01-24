@@ -69,13 +69,29 @@ void mineBlock(Block* block) {
 
 
 int validateChain(Block* block) {
-    Block* current = block;
-    while (current->next != NULL ) {
-        current = current->next;
+
+    if (block == NULL) {
+        printf("Blockchain is empty!\n");
+        return 0;
     }
-    mineBlock(block);
-    insertBlock(block,current);
-    return 1;
+
+    char zerostring[65];
+    memset(zerostring,'0',64);
+    zerostring[64] = '\0';
+    if(strncmp(block->prev_hash,zerostring,64) != 0){
+        printf("Theres No genesis Block");
+        return 0 ; 
+    }
+
+    while (block->next != NULL ) {
+        if(strncmp(block->hash , block->next->prev_hash, 64) != 0 ){
+            printf("The block is not valid !");
+            return 0;
+        }
+        block = block->next;
+    }
+    printf("The block is valid");
+    return 1 ;
 }
 
 void displayBlockchain(Block* head) {
