@@ -92,6 +92,29 @@ void displayBlockchain(Block* head) {
     }
 }
 
+void initializeBlockchain(Block** head) {
+    Block* genesisBlock = (Block*)malloc(sizeof(Block));
+    if (!genesisBlock) {
+        printf("Erreur : allocation mémoire échouée \n");
+        return;
+    }
+
+    genesisBlock->index = 0;
+    genesisBlock->timestamp = time(NULL); 
+    strncpy(genesisBlock->data, "Genesis Block", sizeof(genesisBlock->data) - 1); 
+    genesisBlock->data[sizeof(genesisBlock->data) - 1] = '\0'; 
+    strncpy(genesisBlock->prev_hash, "0", sizeof(genesisBlock->prev_hash) - 1); //makaynch chi wahd 9bl mno
+    genesisBlock->prev_hash[sizeof(genesisBlock->prev_hash) - 1] = '\0';
+    genesisBlock->nonce = 0; 
+    genesisBlock->next = NULL;
+
+    calculHash(genesisBlock);
+    *head = genesisBlock;
+
+    printf("Genesis Block créé.\n");
+}
+
+
 // Exemple:
 
 int main() {
