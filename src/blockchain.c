@@ -54,6 +54,7 @@ void calculHash(Block * block){
     block->hash[SHA256_DIGEST_LENGTH * 2] = '\0';
 }
 
+
 void mineBlock(Block* block) {
     int target = 0;
     Block * edit = block ; 
@@ -87,35 +88,12 @@ void displayBlockchain(Block* head) {
     }
 }
 
-void initializeBlockchain(Block** head) {
-    Block* genesisBlock = (Block*)malloc(sizeof(Block));//genesis Block howa awal block kaykon flbolckchaine lhash dyalo 0000
-    if (!genesisBlock) {
-        printf("Erreur : allocation mémoire échouée\n");//ila tra chi mochkil  fl alocation
-        return;
-    }
-
-    // kan Initialisiw les champs dyal lGenesis Block
-    genesisBlock->index = 0; // l'index = 0
-    genesisBlock->timestamp = time(NULL); 
-    strncpy(genesisBlock->data, "Genesis Block", sizeof(genesisBlock->data) - 1); 
-    genesisBlock->data[sizeof(genesisBlock->data) - 1] = '\0'; 
-    strncpy(genesisBlock->prev_hash, "0", sizeof(genesisBlock->prev_hash) - 1); // maghaykonch 3ndo previous hash hit howa lwl
-    genesisBlock->prev_hash[sizeof(genesisBlock->prev_hash) - 1] = '\0';
-    genesisBlock->nonce = 0; 
-    genesisBlock->next = NULL;
-
-    calculHash(genesisBlock);
-    *head = genesisBlock;
-
-    printf("Genesis Block créé.\n");
-}
-
 // Exemple:
 
 int main() {
     Block block;
     block.nonce = 1234;
-    strcpy(block.data, "Sample Block Data");
+    strcpy(block.data, "Sample Block Dat");
     strcpy(block.prev_hash, "0000000000000000000000000000000000000000000000000000000000000000");
 
     calculHash(&block);
