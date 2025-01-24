@@ -56,21 +56,25 @@ void calculHash(Block * block){
 
 
 void mineBlock(Block* block) {
-    int target = 0;
-    Block * edit = block ; 
-    edit->nonce = target ;
-    while(block->hash != edit->hash){
-        target++;
-        edit->nonce = target ;
-        calculHash(edit);
-    }
+    int difficulty = 4; 
+    char target[difficulty + 1];
+    memset(target, '0', difficulty); 
+
+    block->nonce = 0; 
+    do {
+        calculHash(block); 
+        block->nonce++;    
+    } while (strncmp(block->hash, target, difficulty) != 0); 
 }
 
-int validateChain(Block* head) {
-    Block* current = head;
-    while (current != NULL && current->next != NULL) {
+
+int validateChain(Block* block) {
+    Block* current = block;
+    while (current->next != NULL ) {
         current = current->next;
     }
+    mineBlock(block);
+    insertBlock(block,current);
     return 1;
 }
 
