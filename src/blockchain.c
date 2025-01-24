@@ -12,6 +12,7 @@ Block* createBlock(int index, const char* data, const char* prev_hash) {
     newBlock->timestamp = time(NULL);
     strncpy(newBlock->data, data, sizeof(newBlock->data) - 1);
     newBlock->data[sizeof(newBlock->data) - 1] = '\0';
+    newBlock->hash=calculHash(newBlock);
     strncpy(newBlock->prev_hash, prev_hash, sizeof(newBlock->prev_hash) - 1);
     newBlock->prev_hash[sizeof(newBlock->prev_hash) - 1] = '\0';
     newBlock->nonce = 0;
@@ -20,6 +21,11 @@ Block* createBlock(int index, const char* data, const char* prev_hash) {
 }
 
 void insertBlock(Block** head, Block* newBlock) {
+    if (head == NULL) {
+        printf("Erreur \n");
+        return;
+    }
+
     if (*head == NULL) {
         *head = newBlock;
     } else {
@@ -27,9 +33,17 @@ void insertBlock(Block** head, Block* newBlock) {
         while (temp->next != NULL) {
             temp = temp->next;
         }
+        if (strncmp(temp->hash, newBlock->prev_hash, SHA256_DIGEST_LENGTH * 2) != 0) { //hash en hexadecimal
+            printf("Erreur : Le hash précédent ne correspond pas. Bloc non ajouté.\n");
+            free(newBlock);
+            return;
+        }
+
         temp->next = newBlock;
     }
+    mineBlock(newBlock);
 }
+
 
 void calculHash(Block * block){
     char melang[1024]; 
