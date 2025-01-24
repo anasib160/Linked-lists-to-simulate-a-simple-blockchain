@@ -93,18 +93,20 @@ int validateChain(Block* block) {
     printf("The block is valid");
     return 1 ;
 }
+void displayBlockchain(const Block* head) {
+    const Block* current = head; 
 
-void displayBlockchain(Block* head) {
-    Block* current = head;
-    while (current != NULL) {
-        printf("Block %d:\n", current->index);
-        printf("  Timestamp: %ld\n", current->timestamp);
-        printf("  Data: %s\n", current->data);
-        printf("  Hash: %s\n", current->hash);
-        printf("  Prev Hash: %s\n", current->prev_hash);
-        printf("  Nonce: %d\n\n", current->nonce);
+    printf("===== Blockchain =====\n");
+    while (current) {
+        printf("Bloc #%d\n", current->index);
+        printf("Timestamp: %ld\n", current->timestamp);
+        printf("Data: %s\n", current->data);
+        printf("Nonce: %d\n", current->nonce);
+        printf("Previous Hash: %s\n", current->prev_hash);
+        printf("Hash: %s\n", current->hash);
+        printf("----------------------\n");
 
-        current = current->next;
+        current = current->next; 
     }
 }
 
