@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "linkedlist.c"
 #include "blockchain.c"
-#include "ledgar.c"
+#include "ledger.c"
 
 int main(){
 

@@ -12,7 +12,7 @@ Block* createBlock(int index, const char* data, const char* prev_hash) {
     newBlock->timestamp = time(NULL);
     strncpy(newBlock->data, data, sizeof(newBlock->data) - 1);
     newBlock->data[sizeof(newBlock->data) - 1] = '\0';
-    newBlock->hash=calculHash(newBlock);
+    calculHash(newBlock);
     strncpy(newBlock->prev_hash, prev_hash, sizeof(newBlock->prev_hash) - 1);
     newBlock->prev_hash[sizeof(newBlock->prev_hash) - 1] = '\0';
     newBlock->nonce = 0;
@@ -38,10 +38,10 @@ void insertBlock(Block** head, Block* newBlock) {
             free(newBlock);
             return;
         }
-
+        mineBlock(newBlock);
         temp->next = newBlock;
     }
-    mineBlock(newBlock);
+    
 }
 
 

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <openssl/sha.h>
 #ifndef LEDGER_H
 #define LEDGER_H
 #define MAX_DATA_SIZE 256
