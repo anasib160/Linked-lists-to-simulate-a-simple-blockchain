@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "include/ledger.h"
-#include "include/blockchain.h"
+#include "ledger.h"
+#include "blockchain.h"
 
 void saveBlockchainToFile(const Block* head, const char* filename) {
     FILE* file = fopen(filename, "wb");

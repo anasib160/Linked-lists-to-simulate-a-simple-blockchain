@@ -1,10 +1,12 @@
-#include "include/blockchain.h"
+#include "blockchain.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
 #include <openssl/sha.h> //  SHA-256 howa wahd algoritm li ki7ssb hashing (bwhd formule dmath mhm bla manmrdo rasna hahya library wajda)
 
+void calculHash(Block * block);
+void mineBlock(Block* block);
 
 Block* createBlock(int index, const char* data, const char* prev_hash) {
     Block* newBlock = (Block*)malloc(sizeof(Block));
@@ -42,21 +44,21 @@ void insertBlock(Block** head, Block* newBlock) {
 
 void calculHash(Block * block){
     char melang[1024]; 
-    snprintf(melang, sizeof(melang), "%s%d%s", block->data,    //kan 8alto data o nonce o prev_hash kmlin f melang
+    snprintf(melang, sizeof(melang), "%s%d%s", block->data,    
                                               block->nonce,
                                              block->prev_hash);
 
-    unsigned char hash[SHA256_DIGEST_LENGTH];    // unsigned : binary data
-    SHA256_CTX sha256; //context li aykn fih hash kan declariwh
+    unsigned char hash[SHA256_DIGEST_LENGTH];    
+    SHA256_CTX sha256; 
 
-    SHA256_Init(&sha256); // kan initializiwh
+    SHA256_Init(&sha256); 
 
-    SHA256_Update(&sha256, melang, strlen(melang)); // kan7to fih dik melang li drna
+    SHA256_Update(&sha256, melang, strlen(melang)); 
 
-    SHA256_Final(hash, &sha256); // whahowa wajd o kan7toh f hash
+    SHA256_Final(hash, &sha256); 
 
 
-    //db dik hash rah binary donc 8ssa n7wloh decimal haka :
+    
     for (int i = 0; i < SHA256_DIGEST_LENGTH; i++) {  
         sprintf(&block->hash[i * 2], "%02x", hash[i]); 
     }
@@ -102,8 +104,8 @@ int validateChain(Block* block) {
     printf("The block is valid");
     return 1 ;
 }
-void displayBlockchain(const Block* head) {
-    const Block* current = head; 
+void displayBlockchain(Block* head) {
+    Block* current = head; 
 
     printf("===== Blockchain =====\n");
     while (current) {
@@ -130,8 +132,7 @@ void initializeBlockchain(Block** head) {
     genesisBlock->timestamp = time(NULL); 
     strncpy(genesisBlock->data, "Genesis Block", sizeof(genesisBlock->data) - 1); 
     genesisBlock->data[sizeof(genesisBlock->data) - 1] = '\0'; 
-    strncpy(genesisBlock->prev_hash, '0', sizeof(genesisBlock->prev_hash) - 1); //makaynch chi wahd 9bl mno
-    genesisBlock->prev_hash[sizeof(genesisBlock->prev_hash) - 1] = '\0';
+    strncpy(genesisBlock->prev_hash ,"0000000000000000000000000000000000000000000000000000000000000000000",70);
     genesisBlock->nonce = 0; 
     genesisBlock->next = NULL;
 

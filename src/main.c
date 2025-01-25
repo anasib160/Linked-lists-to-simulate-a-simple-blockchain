@@ -4,7 +4,6 @@
 #include "ledger.c"
 
 int main() {
-    // Initialize the blockchain
     Block* blockchain = NULL;
     initializeBlockchain(&blockchain);
 
@@ -45,10 +44,6 @@ int main() {
     } else {
         printf("Failed to load blockchain from file.\n");
     }
-
-    // Free the memory used by the blockchain
-    freeBlockchain(blockchain);
-    freeBlockchain(loadedBlockchain);
 
     return 0;
 }
