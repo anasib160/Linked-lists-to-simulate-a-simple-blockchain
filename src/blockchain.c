@@ -12,11 +12,11 @@ Block* createBlock(int index, const char* data, const char* prev_hash) {
     newBlock->timestamp = time(NULL);
     strncpy(newBlock->data, data, sizeof(newBlock->data) - 1);
     newBlock->data[sizeof(newBlock->data) - 1] = '\0';
-    calculHash(newBlock);
     strncpy(newBlock->prev_hash, prev_hash, sizeof(newBlock->prev_hash) - 1);
     newBlock->prev_hash[sizeof(newBlock->prev_hash) - 1] = '\0';
     newBlock->nonce = 0;
     newBlock->next = NULL;
+    calculHash(newBlock);
     return newBlock;
 }
 
@@ -32,11 +32,6 @@ void insertBlock(Block** head, Block* newBlock) {
         Block* temp = *head;
         while (temp->next != NULL) {
             temp = temp->next;
-        }
-        if (strncmp(temp->hash, newBlock->prev_hash, SHA256_DIGEST_LENGTH * 2) != 0) { //hash en hexadecimal
-            printf("Erreur : Le hash précédent ne correspond pas. Bloc non ajouté.\n");
-            free(newBlock);
-            return;
         }
         mineBlock(newBlock);
         temp->next = newBlock;
@@ -135,7 +130,7 @@ void initializeBlockchain(Block** head) {
     genesisBlock->timestamp = time(NULL); 
     strncpy(genesisBlock->data, "Genesis Block", sizeof(genesisBlock->data) - 1); 
     genesisBlock->data[sizeof(genesisBlock->data) - 1] = '\0'; 
-    strncpy(genesisBlock->prev_hash, "0", sizeof(genesisBlock->prev_hash) - 1); //makaynch chi wahd 9bl mno
+    strncpy(genesisBlock->prev_hash, '0', sizeof(genesisBlock->prev_hash) - 1); //makaynch chi wahd 9bl mno
     genesisBlock->prev_hash[sizeof(genesisBlock->prev_hash) - 1] = '\0';
     genesisBlock->nonce = 0; 
     genesisBlock->next = NULL;
