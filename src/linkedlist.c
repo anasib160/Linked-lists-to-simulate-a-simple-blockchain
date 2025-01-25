@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "linkedlist.h"
+#include "include/linkedlist.h"
 
 Node * createNode(int data){
     Node * head = (Node *)malloc(sizeof(Node));
@@ -59,7 +59,3 @@ void displayList(Node * head){
 }
 
 
-int main(){
-
-    return 0 ;
-}

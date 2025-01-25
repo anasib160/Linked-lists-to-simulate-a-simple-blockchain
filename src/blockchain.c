@@ -1,8 +1,8 @@
-#include "blockchain.h"
+#include "include/blockchain.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include <time.h>
+#include <string.h>
 #include <openssl/sha.h> //  SHA-256 howa wahd algoritm li ki7ssb hashing (bwhd formule dmath mhm bla manmrdo rasna hahya library wajda)
 
 
@@ -139,19 +139,4 @@ void initializeBlockchain(Block** head) {
     *head = genesisBlock;
 
     printf("Genesis Block créé.\n");
-}
-
-
-// Exemple:
-
-int main() {
-    Block block;
-    block.nonce = 1234;
-    strcpy(block.data, "Sample Block Dat");
-    strcpy(block.prev_hash, "0000000000000000000000000000000000000000000000000000000000000000");
-
-    calculHash(&block);
-    printf("Block Hash: %s\n", block.hash);
-
-    return 0;
 }

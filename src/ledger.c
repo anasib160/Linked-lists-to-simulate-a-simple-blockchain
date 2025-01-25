@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
-#include "ledger.h"
-#include "blockchain.h"
+#include <stdlib.h>
+#include "include/ledger.h"
+#include "include/blockchain.h"
 
 void saveBlockchainToFile(const Block* head, const char* filename) {
     FILE* file = fopen(filename, "wb");
@@ -66,8 +67,4 @@ Block* loadBlockchainFromFile(const char* filename) {
     fclose(file);
     printf("Blockchain chargée depuis le fichier : %s\n", filename);
     return head;
-}
-int main(){
-
-    return 0 ;
 }

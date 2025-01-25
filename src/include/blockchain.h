@@ -14,10 +14,12 @@ typedef struct Block {
     struct Block* next;       
 } Block;
 
-// Block* createBlock(int index, const char* data, const char* prev_hash);
-// void insertBlock(Block** head, Block* newBlock);
-// void mineBlock(Block* block);
-// int validateChain(Block* head);
-// void displayBlockchain(Block* head);
+Block* createBlock(int index, const char* data, const char* prev_hash);
+void insertBlock(Block** head, Block* newBlock);
+void mineBlock(Block* block);
+int validateChain(Block* head);
+void displayBlockchain(Block* head);
+
+
 
 #endif 

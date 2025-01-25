@@ -15,7 +15,3 @@ typedef struct LedgerEntry {
 
 #endif 
 
-int main(){
-
-    return 0 ;
-}
