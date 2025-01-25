@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "*.embeddedhtml": "html",
-        "stdio.h": "c",
-        "blockchain.h": "c",
-        "time.h": "c"
-    }
-}

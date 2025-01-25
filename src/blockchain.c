@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include <openssl/sha.h> //  SHA-256 howa wahd algoritm li ki7ssb hashing (bwhd formule dmath mhm bla manmrdo rasna hahya library wajda)
+#include <openssl/sha.h> //SSHA256
 
 void calculHash(Block * block);
 void mineBlock(Block* block);
@@ -132,7 +132,7 @@ void initializeBlockchain(Block** head) {
     genesisBlock->timestamp = time(NULL); 
     strncpy(genesisBlock->data, "Genesis Block", sizeof(genesisBlock->data) - 1); 
     genesisBlock->data[sizeof(genesisBlock->data) - 1] = '\0'; 
-    strncpy(genesisBlock->prev_hash ,"0000000000000000000000000000000000000000000000000000000000000000000",70);
+    strncpy(genesisBlock->prev_hash ,"0000000000000000000000000000000000000000000000000000000000000000000",64);
     genesisBlock->nonce = 0; 
     genesisBlock->next = NULL;
 

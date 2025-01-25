@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "linkedlist.h"S
+#include "linkedlist.h"
 
 Node * createNode(int data){
     Node * head = (Node *)malloc(sizeof(Node));

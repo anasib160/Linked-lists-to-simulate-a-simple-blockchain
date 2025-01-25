@@ -1,7 +1,8 @@
 #include <stdio.h>
-#include "linkedlist.c"
-#include "blockchain.c"
-#include "ledger.c"
+#include "linkedlist.h"
+#include "blockchain.h"
+#include "ledger.h"
+
 
 int main() {
     Block* blockchain = NULL;
