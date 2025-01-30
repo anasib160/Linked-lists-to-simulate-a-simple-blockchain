@@ -95,7 +95,7 @@ int validateChain(Block* block) {
     }
 
     while (block->next != NULL ) {
-        if(strncmp(block->hash , block->next->prev_hash, 64) != 0 ){
+        if(strncmp(block->hash , block->next->prev_hash, 64) == 0 ){
             printf("The block is not valid !");
             return 0;
         }
